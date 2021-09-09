@@ -31,7 +31,8 @@ namespace InsuranceSolution.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => {
-                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDb;Database=InsuranceSolutionDb;Integrated Security=true", b => {
+                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDb;Database=InsuranceSolutionDb;Integrated Security=true", b => 
+                {
                     b.MigrationsAssembly("InsuranceSolution.Api");
                 }); 
             });
