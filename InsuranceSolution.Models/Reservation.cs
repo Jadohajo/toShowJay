@@ -15,7 +15,7 @@ namespace InsuranceSolution.Models
         [Column("Price", TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; } // Devimal(18, 2)
 
-        public provider provider { get; set; }
+        public Provider provider { get; set; }
         [ForeignKey(nameof(provider))]
         public int ProviderId { get; set; }
 

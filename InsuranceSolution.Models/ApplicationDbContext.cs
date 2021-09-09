@@ -14,7 +14,7 @@ namespace InsuranceSolution.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<provider> Providers { get; set; }
+        public DbSet<Provider> Providers { get; set; }
 
     }
 }

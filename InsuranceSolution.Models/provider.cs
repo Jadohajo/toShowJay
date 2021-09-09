@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InsuranceSolution.Models
 {
-    public class provider
+    public class Provider
     {
         public int Id { get; set; }
         [Required]
         [StringLength(50)]
-        public string name { get; set;  }
+        public string Name { get; set;  }
         [Required]
         [StringLength(2)]
         public string Country { get; set;  }
