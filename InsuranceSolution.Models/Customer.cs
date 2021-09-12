@@ -35,7 +35,6 @@ namespace InsuranceSolution.Models
         // Relationships 
         public List<Car> cars { get; set; }
 
-
     }
 
 }

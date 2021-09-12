@@ -1,4 +1,5 @@
 ﻿using InsuranceSolution.Models;
+using InsuranceSolution.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,13 +21,32 @@ namespace InsuranceSolution.Api.Controllers
             _db = db;
         }
 
-        // Retrieve all 
+        // Retrieve all summary of each customer 
+
+        // THE LEGACY VERSION 
+        //[HttpGet]
+        //public IActionResult Get()
+        //{
+        //    var customers = _db.Customers.ToArray();
+
+        //    return Ok(customers);
+        //}
+
+        // THE OPTIMIZED BETTER VERSION 
         [HttpGet]
         public IActionResult Get()
         {
             var customers = _db.Customers.ToArray();
+            // SELECT function in LINQ is used for project 
+            var customerSummaries = customers.Select(c => new CustomerSummary
+            {
+                Id = c.Id,
+                Country = c.Country,
+                Email = c.Email,
+                FullName = $"{c.FirstName} {c.LastName}"
+            });
 
-            return Ok(customers);
+            return Ok(customerSummaries);
         }
 
         // Retrieve one with all the details 
@@ -39,7 +59,16 @@ namespace InsuranceSolution.Api.Controllers
             if (customer == null)
                 return NotFound();
 
-            return Ok(customer);
+            return Ok(new CustomerDetail
+            {
+                Id = customer.Id,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Phone = customer.Phone,
+                Birthdate = customer.Birthday,
+                Email = customer.Email,
+                CarsCount = 0 // Calculate the count of the used cars 
+            });
         }
 
         // Retrieve customers by country // seach criteria 
