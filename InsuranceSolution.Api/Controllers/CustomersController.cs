@@ -20,10 +20,36 @@ namespace InsuranceSolution.Api.Controllers
             _db = db;
         }
 
+        // Retrieve all 
         [HttpGet]
         public IActionResult Get()
         {
             var customers = _db.Customers.ToArray();
+
+            return Ok(customers);
+        }
+
+        // Retrieve one with all the details 
+        // GET: /api/customers/345435
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var customer = _db.Customers.Find(id);
+
+            if (customer == null)
+                return NotFound();
+
+            return Ok(customer);
+        }
+
+        // Retrieve customers by country // seach criteria 
+        // GET: /api/customers/country?code=UK
+        // GET: /api/customers/country/UK
+        [HttpGet("country/{country}")]
+        public IActionResult Get(string country)
+        {
+            // Find retrieve one customer by it's primary 
+            var customers = _db.Customers.Where(c => c.Country == country).ToArray();
 
             return Ok(customers);
         }
