@@ -31,7 +31,6 @@ namespace InsuranceSolution.Models
 
         public DateTime Birthday { get; set; }
         
-        
         // Relationships 
         public List<Car> cars { get; set; }
 
